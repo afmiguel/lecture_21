@@ -1,3 +1,5 @@
+use std::mem::replace;
+
 #[derive(Clone, Debug)]
 enum LinkedListNode {
     Nil,
@@ -38,7 +40,17 @@ impl LinkedListNode {
     }
 
     pub fn push_front(&mut self, value: i32){
-        *self = Self::Node(value, Box::new(self.clone()));
+        // Clone version
+        // *self = Self::Node(value, Box::new(self.clone()));
+
+        // Swap version
+        // let mut temp = Self::Nil;
+        // std::mem::swap(self, &mut temp);
+        // *self = Self::Node(value, Box::new(temp));
+
+        // replace version
+        let temp2 = std::mem::replace(self, Self::Nil);
+        *self = Self::Node(value, Box::new(temp2));
     }
 
     pub fn insert(&mut self, index: usize, value:i32){
@@ -81,6 +93,6 @@ fn main() {
     lista.display_list();
     lista.push_front(10);
     lista.display_list();
-    lista.delete(0);
-    lista.display_list();
+//    lista.delete(0);
+//    lista.display_list();
 }
