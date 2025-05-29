@@ -52,6 +52,25 @@ impl LinkedListNode {
         }
     }
 
+    pub fn delete(&mut self, index: usize) -> Option<i32>{
+        if index == 0{
+            match self{
+                Self::Nil => None,
+                Self::Node(value, tail) => {
+                    let temp_value = *value;
+                    *self = *tail.clone();
+                    Some(temp_value)
+                }
+            }
+        } else{
+            match self{
+                Self::Nil => None,
+                Self::Node(_, tail) =>
+                    tail.delete(index-1)
+            }
+        }
+    }
+
 }
 
 fn main() {
