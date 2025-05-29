@@ -75,15 +75,8 @@ impl LinkedListNode {
 
 fn main() {
     let mut lista = LinkedListNode::Nil;
-    lista.display_list();
-    lista.push_back(10);
     lista.push_back(20);
-    lista.push_back(30);
     lista.display_list();
-    lista.push_front(5);
-    lista.display_list();
-    lista.insert(2,15);
-    lista.display_list();
-    lista.delete(2);
+    lista.push_front(10);
     lista.display_list();
 }
