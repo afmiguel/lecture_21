@@ -37,9 +37,21 @@ impl LinkedListNode {
     }
 
     pub fn push_front(&mut self, value: i32){
-        *self = Self::Node(value,
-                           Box::new(self.clone()));
+        *self = Self::Node(value, Box::new(self.clone()));
     }
+
+    pub fn insert(&mut self, index: usize, value:i32){
+        if index == 0{
+            self.push_front(value);
+        } else{
+            match self{
+                Self::Nil => panic!("Nil at {}!", index),
+                Self::Node(_, tail) =>
+                    tail.insert(index-1, value),
+            }
+        }
+    }
+
 }
 
 fn main() {
@@ -50,5 +62,7 @@ fn main() {
     lista.push_back(30);
     lista.display_list();
     lista.push_front(5);
+    lista.display_list();
+    lista.insert(2,15);
     lista.display_list();
 }
