@@ -71,7 +71,13 @@ impl LinkedListNode {
                 Self::Nil => None,
                 Self::Node(value, tail) => {
                     let temp_value = *value;
-                    *self = *tail.clone();
+                    // Cloen version
+                    // *self = *tail.clone();
+
+                    // Swap version
+                    let mut temp = Self::Nil;
+                    std::mem::swap(tail as &mut Self, &mut temp);
+                    *self = temp;
                     Some(temp_value)
                 }
             }
