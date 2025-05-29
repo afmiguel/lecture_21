@@ -18,10 +18,11 @@ enum LinkedListNode {
 
 impl LinkedListNode {
     fn display_list(&self) {
+        let ptr: *const LinkedListNode = std::ptr::addr_of!(*self);
         match self {
-            Self::Nil => println!("Nil"),
+            Self::Nil => println!("Nil({:p})", ptr),
             Self::Node(v, tail) => {
-                print!("{}->", v);
+                print!("{}({:p})->", v, ptr);
                 tail.display_list();
             }
         }
@@ -76,7 +77,10 @@ impl LinkedListNode {
 fn main() {
     let mut lista = LinkedListNode::Nil;
     lista.push_back(20);
+    lista.push_back(30);
     lista.display_list();
     lista.push_front(10);
+    lista.display_list();
+    lista.delete(0);
     lista.display_list();
 }
