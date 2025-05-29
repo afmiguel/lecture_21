@@ -84,4 +84,6 @@ fn main() {
     lista.display_list();
     lista.insert(2,15);
     lista.display_list();
+    lista.delete(2);
+    lista.display_list();
 }
